@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELHYTRAVEL by ELHYAI | Visas sin errores ni rechazos</title>
+<meta name="description" content="Obtén tu visa para Estados Unidos, Canadá, Europa y más. Asesoría personalizada y acompañamiento completo.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #25D366; --green-dark: #128C7E; --gold: #D4A843; --gold-light: #F0C96B;
+  --black: #080A08; --dark: #0D110D; --dark2: #131A13; --dark3: #1A241A;
+  --white: #FFFFFF; --gray: #8A9A8A; --gray-light: #C8D4C8;
+  --font-d: 'Playfair Display', serif; --font-b: 'DM Sans', sans-serif;
+  --radius: 16px; --tr: 0.3s ease;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-b); background: var(--black); color: var(--white); overflow-x: hidden; line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--dark); } ::-webkit-scrollbar-thumb { background: var(--green-dark); border-radius: 4px; }
+
+/* NAVBAR */
+#navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 18px 0; transition: background var(--tr), box-shadow var(--tr); }
+#navbar.scrolled { background: rgba(8,10,8,0.97); box-shadow: 0 2px 30px rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo span:first-child { font-family: var(--font-d); font-size: 22px; font-weight: 900; display: block; }
+.nav-logo span:last-child { font-size: 10px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-light); transition: color var(--tr); }
+.nav-links a:hover { color: var(--white); }
+.btn-nav { display: flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--green); color: var(--black); font-weight: 700; font-size: 13px; border-radius: 50px; transition: all var(--tr); }
+.btn-nav:hover { background: var(--gold); transform: translateY(-2px); }
+@media(max-width:768px){ .nav-links { display: none; } }
+
+/* HERO */
+#hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(37,211,102,0.06) 0%, transparent 70%), linear-gradient(135deg, #060806 0%, #0D160D 50%, #050805 100%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(37,211,102,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,211,102,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 700px; padding: 0 20px; margin: 0 auto; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); border-radius: 50px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
+.hero-badge span { display: block; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 1.5s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-title { font-family: var(--font-d); font-size: clamp(36px,6vw,70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+.hero-title em { font-style: normal; background: linear-gradient(135deg, var(--green), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: clamp(16px,2.5vw,20px); font-weight: 300; color: var(--gray-light); margin-bottom: 40px; }
+.hero-sub strong { color: var(--gold); font-weight: 600; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 60px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--green); color: var(--black); font-weight: 700; font-size: 16px; border-radius: 50px; border: none; cursor: pointer; transition: all var(--tr); box-shadow: 0 0 40px rgba(37,211,102,0.3); text-decoration: none; }
+.btn-primary:hover { background: #2EF07A; transform: translateY(-3px); box-shadow: 0 16px 48px rgba(37,211,102,0.45); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: transparent; color: var(--white); font-weight: 600; font-size: 16px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all var(--tr); }
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+.hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+.stat-num { font-family: var(--font-d); font-size: 36px; font-weight: 900; color: var(--green); line-height: 1; }
+.stat-label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+.stat-phone a { color: var(--gold-light); font-size: 14px; font-weight: 600; }
+.scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--gray); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--green), transparent); animation: sp 2s ease infinite; }
+@keyframes sp { 0%{transform:scaleY(1);opacity:1} 100%{transform:scaleY(0.3);opacity:0} }
+
+/* SECTION COMMONS */
+.section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.section-label::before { content:''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.section-title { font-family: var(--font-d); font-size: clamp(28px,5vw,52px); font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+.gold { color: var(--gold); } .green { color: var(--green); }
+
+/* SERVICES */
+#services { padding: 120px 0; background: var(--dark2); position: relative; }
+#services::before { content:''; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--green-dark), var(--gold), var(--green-dark), transparent); }
+.services-header { text-align: center; margin-bottom: 64px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+/* CARD */
+.service-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); overflow: hidden; transition: all var(--tr); }
+.service-card:hover { transform: translateY(-6px); border-color: rgba(37,211,102,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.card-image { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.card-image-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; filter: brightness(0.5); }
+.service-card:hover .card-image-bg { transform: scale(1.08); }
+.card-icon { position: relative; z-index: 2; font-size: 60px; }
+.card-badge { position: absolute; top: 14px; right: 14px; z-index: 3; padding: 4px 12px; background: var(--gold); color: var(--black); font-size: 11px; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; }
+.card-body { padding: 22px; }
+.card-name { font-family: var(--font-d); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.card-desc { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+.card-footer { display: flex; justify-content: flex-end; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; }
+
+/* BOTÓN AGREGAR */
+.btn-add {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 12px 24px; background: var(--green); color: var(--black);
+  font-weight: 700; font-size: 14px; border: none; border-radius: 50px;
+  cursor: pointer; transition: all var(--tr);
+}
+.btn-add:hover { background: #2EF07A; transform: scale(1.05); }
+.btn-add.en-pedido { background: var(--gold); color: var(--black); }
+
+/* BARRA INFERIOR CARRITO */
+#cart-bar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: #0a120a;
+  border-top: 2px solid var(--green);
+  box-shadow: 0 -6px 40px rgba(0,0,0,0.8);
+  padding: 14px 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cart-left { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.cart-label { font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 2px; }
+.cart-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.cart-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); border-radius: 50px; font-size: 12px; font-weight: 500; color: var(--white); white-space: nowrap; }
+.cart-tag button { background: none; border: none; color: var(--gray); cursor: pointer; font-size: 14px; padding: 0; line-height: 1; transition: color var(--tr); }
+.cart-tag button:hover { color: #ff6b6b; }
+.cart-right { flex-shrink: 0; }
+.btn-wa-cart { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--green); color: var(--black); font-weight: 700; font-size: 15px; border: none; border-radius: 50px; cursor: pointer; transition: all var(--tr); box-shadow: 0 4px 20px rgba(37,211,102,0.4); white-space: nowrap; }
+.btn-wa-cart:hover { background: #2EF07A; transform: translateY(-2px); }
+@media(max-width:600px){ #cart-bar { padding: 12px 14px; } .btn-wa-cart { padding: 11px 16px; font-size: 13px; } .cart-tag { font-size: 11px; } }
+
+/* BENEFITS */
+#benefits { padding: 120px 0; background: var(--black); }
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 28px; margin-top: 60px; }
+.benefit-card { background: linear-gradient(135deg, var(--dark3), var(--dark2)); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius); padding: 36px 28px; text-align: center; transition: all var(--tr); position: relative; overflow: hidden; }
+.benefit-card::after { content:''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--gold)); transform: scaleX(0); transition: transform var(--tr); }
+.benefit-card:hover { transform: translateY(-6px); border-color: rgba(37,211,102,0.2); }
+.benefit-card:hover::after { transform: scaleX(1); }
+.benefit-icon { font-size: 44px; margin-bottom: 18px; display: block; }
+.benefit-title { font-family: var(--font-d); font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.benefit-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* TESTIMONIOS */
+#testimonials { padding: 120px 0; background: var(--dark2); overflow: hidden; position: relative; }
+#testimonials::before { content:''; position: absolute; top:-1px; left:0; right:0; height:2px; background: linear-gradient(90deg, transparent, var(--gold), var(--green), var(--gold), transparent); }
+.testimonials-header { text-align: center; margin-bottom: 64px; }
+.t-wrapper { overflow: hidden; position: relative; }
+.t-wrapper::before,.t-wrapper::after { content:''; position: absolute; top:0; bottom:0; width: 100px; z-index: 2; pointer-events: none; }
+.t-wrapper::before { left:0; background: linear-gradient(to right, var(--dark2), transparent); }
+.t-wrapper::after { right:0; background: linear-gradient(to left, var(--dark2), transparent); }
+.t-track { display: flex; gap: 22px; width: max-content; animation: scrollT 30s linear infinite; }
+.t-track:hover { animation-play-state: paused; }
+@keyframes scrollT { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.t-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 26px; width: 320px; flex-shrink: 0; transition: all var(--tr); }
+.t-card:hover { border-color: rgba(37,211,102,0.2); transform: translateY(-4px); }
+.t-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.t-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; background: var(--dark); }
+.t-name { font-weight: 700; font-size: 15px; }
+.t-dest { font-size: 12px; color: var(--green); font-weight: 500; }
+.t-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 10px; }
+.t-text { font-size: 13px; color: var(--gray-light); line-height: 1.7; font-style: italic; }
+.t-tag { display: inline-block; margin-top: 14px; padding: 4px 12px; background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.2); border-radius: 50px; font-size: 11px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* PROCESO */
+#process { padding: 120px 0; background: var(--black); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-top: 60px; }
+.process-step { text-align: center; padding: 32px 20px; }
+.step-num { width: 70px; height: 70px; background: var(--dark3); border: 2px solid var(--green-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-size: 26px; font-weight: 900; color: var(--green); margin: 0 auto 18px; transition: all var(--tr); }
+.process-step:hover .step-num { background: var(--green); color: var(--black); border-color: var(--green); box-shadow: 0 0 30px rgba(37,211,102,0.4); }
+.step-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+/* CTA */
+#cta { padding: 140px 0; text-align: center; background: var(--dark2); position: relative; overflow: hidden; }
+.cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(37,211,102,0.08) 0%, transparent 70%); pointer-events: none; }
+.cta-content { position: relative; z-index: 1; }
+.cta-title { font-family: var(--font-d); font-size: clamp(30px,5vw,60px); font-weight: 900; line-height: 1.15; margin-bottom: 24px; }
+.cta-sub { font-size: 18px; color: var(--gray-light); max-width: 540px; margin: 0 auto 48px; line-height: 1.7; }
+.btn-cta { display: inline-flex; align-items: center; gap: 14px; padding: 22px 48px; background: var(--green); color: var(--black); font-weight: 700; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: all var(--tr); box-shadow: 0 0 60px rgba(37,211,102,0.4); text-decoration: none; animation: ctaP 3s ease-in-out infinite; }
+@keyframes ctaP { 0%,100%{box-shadow:0 0 40px rgba(37,211,102,0.3)} 50%{box-shadow:0 0 80px rgba(37,211,102,0.6)} }
+.btn-cta:hover { background: #2EF07A; transform: translateY(-4px); animation: none; }
+
+/* WA FLOAT */
+#wa-float { position: fixed; bottom: 30px; right: 30px; z-index: 9000; width: 62px; height: 62px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 30px rgba(37,211,102,0.5); transition: all var(--tr); animation: waP 3s ease-in-out infinite; text-decoration: none; }
+@keyframes waP { 0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.3)} 50%{box-shadow:0 8px 48px rgba(37,211,102,0.6),0 0 0 12px rgba(37,211,102,0)} }
+#wa-float:hover { background: #2EF07A; transform: scale(1.1); animation: none; }
+#wa-float svg { width: 30px; height: 30px; fill: var(--black); }
+.wa-tip { position: absolute; right: 72px; background: var(--dark3); color: var(--white); font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 8px; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: all var(--tr); pointer-events: none; border: 1px solid rgba(37,211,102,0.2); }
+#wa-float:hover .wa-tip { opacity: 1; transform: translateX(0); }
+
+/* FOOTER */
+footer { padding: 60px 0 40px; background: var(--black); border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; margin-bottom: 48px; }
+.footer-brand span:first-child { font-family: var(--font-d); font-size: 24px; font-weight: 900; display: block; margin-bottom: 4px; }
+.footer-brand span:last-child { font-size: 11px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; }
+.footer-desc { font-size: 14px; color: var(--gray); max-width: 260px; margin-top: 14px; line-height: 1.7; }
+.footer-col-title { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--gray-light); margin-bottom: 14px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 13px; color: var(--gray); transition: color var(--tr); }
+.footer-links a:hover { color: var(--green); }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; color: var(--gray); }
+.footer-domain { color: var(--green); font-weight: 600; }
+
+/* FADE-UP */
+.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.s1{transition-delay:.1s} .s2{transition-delay:.2s} .s3{transition-delay:.3s} .s4{transition-delay:.4s} .s5{transition-delay:.5s} .s6{transition-delay:.6s}
+@media(max-width:768px){ .hero-actions{flex-direction:column} .btn-primary,.btn-secondary{justify-content:center} .hero-stats{gap:24px} }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span>ELHYTRAVEL</span>
+      <span>by ELHYAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#testimonials">Testimonios</a></li>
+      <li><a href="#process">Proceso</a></li>
+      <li><a href="#benefits">Beneficios</a></li>
+    </ul>
+    <a href="https://wa.me/593989938910?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20asesor%C3%ADa%20sobre%20visas." class="btn-nav">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consulta gratis
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><span></span> Agencia virtual · travel.elhyai.com</div>
+      <h1 class="hero-title">Te ayudamos a obtener tu visa <em>sin errores ni rechazos</em></h1>
+      <p class="hero-sub"><strong>Estados Unidos, Canadá, Europa</strong> y más destinos. Asesoría personalizada desde el primer día hasta que tengas tu visa en mano.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/593989938910?text=Hola%2C%20quiero%20iniciar%20el%20proceso%20para%20obtener%20mi%20visa." class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hablar por WhatsApp
+        </a>
+        <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Ver servicios ↓</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">+500</div><div class="stat-label">Visas aprobadas</div></div>
+        <div class="stat-item"><div class="stat-num">96%</div><div class="stat-label">Tasa de éxito</div></div>
+        <div class="stat-item"><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
+        <div class="stat-item stat-phone"><div class="stat-num" style="font-size:18px;color:var(--gold)">📞</div><div class="stat-label"><a href="tel:+593989938910">0989 938 910</a></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">Nuestros servicios</div>
+      <h2 class="section-title">Todo lo que necesitas para <span class="gold">viajar sin preocupaciones</span></h2>
+      <p style="color:var(--gray);max-width:540px;margin:0 auto;font-size:15px">Selecciona los servicios que necesitas y envíanos tu pedido por WhatsApp.</p>
+    </div>
+    <div class="services-grid" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="benefits">
+  <div class="container">
+    <div class="section-label">Por qué elegirnos</div>
+    <h2 class="section-title">Tu visa es nuestra <span class="gold">responsabilidad</span></h2>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up s1"><span class="benefit-icon">🏆</span><h3 class="benefit-title">Alta tasa de aprobación</h3><p class="benefit-desc">Más del 96% de nuestros clientes obtienen su visa aprobada en el primer intento gracias a nuestra revisión exhaustiva de documentos.</p></div>
+      <div class="benefit-card fade-up s2"><span class="benefit-icon">🤝</span><h3 class="benefit-title">Asesoría personalizada</h3><p class="benefit-desc">Cada caso es único. Te asignamos un asesor especializado que conoce tu situación desde el inicio hasta el final del proceso.</p></div>
+      <div class="benefit-card fade-up s3"><span class="benefit-icon">🛡️</span><h3 class="benefit-title">Acompañamiento completo</h3><p class="benefit-desc">Te guiamos en cada paso: checklist de documentos, preparación para la entrevista, llenado de formularios y seguimiento post-solicitud.</p></div>
+      <div class="benefit-card fade-up s4"><span class="benefit-icon">⭐</span><h3 class="benefit-title">Experiencia comprobada</h3><p class="benefit-desc">Más de 2 años en el mercado, +500 visas aprobadas y cientos de familias viajando gracias a nuestro trabajo.</p></div>
+      <div class="benefit-card fade-up s5"><span class="benefit-icon">⚡</span><h3 class="benefit-title">Respuesta rápida</h3><p class="benefit-desc">Respondemos tus consultas en menos de 2 horas en horario de atención. Tu tiempo es valioso y lo respetamos.</p></div>
+      <div class="benefit-card fade-up s6"><span class="benefit-icon">💬</span><h3 class="benefit-title">Atención en español</h3><p class="benefit-desc">Todo el proceso en tu idioma, sin tecnicismos confusos. Traducciones certificadas y formularios explicados paso a paso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="process">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:60px">
+      <div class="section-label">¿Cómo funciona?</div>
+      <h2 class="section-title">Tu visa en <span class="green">4 pasos simples</span></h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up s1"><div class="step-num">1</div><h3 class="step-title">Contacto inicial</h3><p class="step-desc">Escríbenos por WhatsApp. Evaluamos tu caso de forma gratuita y sin compromiso.</p></div>
+      <div class="process-step fade-up s2"><div class="step-num">2</div><h3 class="step-title">Revisión de perfil</h3><p class="step-desc">Analizamos tu situación migratoria, financiera y laboral para definir la estrategia correcta.</p></div>
+      <div class="process-step fade-up s3"><div class="step-num">3</div><h3 class="step-title">Preparación</h3><p class="step-desc">Reunimos y revisamos todos tus documentos. Llenamos formularios y preparamos tu entrevista.</p></div>
+      <div class="process-step fade-up s4"><div class="step-num">4</div><h3 class="step-title">¡Visa aprobada!</h3><p class="step-desc">Celebramos contigo. Seguimiento post-aprobación incluido para futuras renovaciones.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label">Testimonios reales</div>
+      <h2 class="section-title">Ellos ya viajan. <span class="green">Ahora es tu turno.</span></h2>
+    </div>
+  </div>
+  <div class="t-wrapper"><div class="t-track" id="t-track"></div></div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="container cta-content">
+    <div class="section-label" style="justify-content:center">Comienza hoy</div>
+    <h2 class="cta-title">¿Listo para obtener tu <span class="gold">visa sin complicaciones</span>?</h2>
+    <p class="cta-sub">No esperes más. Nuestros asesores están disponibles ahora mismo para evaluar tu caso de forma gratuita.</p>
+    <a href="https://wa.me/593989938910?text=Hola%20ELHYTRAVEL%2C%20me%20gustar%C3%ADa%20agendar%20una%20asesor%C3%ADa%20gratuita." class="btn-cta">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agenda tu asesoría gratuita por WhatsApp
+    </a>
+    <p style="margin-top:22px;font-size:13px;color:var(--gray)">✓ Sin costo · ✓ Sin compromiso · ✓ Respuesta en menos de 2 horas</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span>ELHYTRAVEL</span><span>by ELHYAI</span></div>
+        <p class="footer-desc">Agencia virtual especializada en visas y servicios de viaje. Tu aliado de confianza para viajar al mundo.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Servicios</p>
+        <ul class="footer-links">
+          <li><a href="#">Visa Estados Unidos</a></li>
+          <li><a href="#">Visa Canadá</a></li>
+          <li><a href="#">Visa Europa (Schengen)</a></li>
+          <li><a href="#">Visa México</a></li>
+          <li><a href="#">Otras Visas</a></li>
+          <li><a href="#">Vuelos Nacionales e Internacionales</a></li>
+          <li><a href="#">Hospedaje Nacional e Internacional</a></li>
+          <li><a href="#">Seguro de Viaje</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contacto</p>
+        <ul class="footer-links">
+          <li><a href="#">🌐 travel.elhyai.com</a></li>
+          <li><a href="tel:+593989938910">📞 0989 938 910</a></li>
+          <li><a href="https://wa.me/593989938910">💬 WhatsApp</a></li>
+          <li><a href="mailto:info@elhyai.com">✉️ info@elhyai.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ELHYTRAVEL · <span class="footer-domain">travel.elhyai.com</span></span>
+      <span>Powered by <strong>ELHYAI Consultores</strong></span>
+    </div>
+  </div>
+</footer>
+
+<!-- BARRA CARRITO INFERIOR -->
+<div id="cart-bar">
+  <div class="cart-left">
+    <div class="cart-label" id="cart-label">0 SERVICIOS SELECCIONADOS</div>
+    <div class="cart-tags" id="cart-tags"></div>
+  </div>
+  <div class="cart-right">
+    <button class="btn-wa-cart" id="btn-wa-cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Solicitar por WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- WA FLOTANTE -->
+<a href="https://wa.me/593989938910?text=Hola%20ELHYTRAVEL%2C%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." id="wa-float">
+  <div class="wa-tip">¡Consúltanos gratis!</div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ============================================================
+// DATOS
+// ============================================================
+var SERVICES = [
+  { id:1, name:'Visa Estados Unidos', desc:'Asesoría completa para visa B1/B2, F1 (estudiante) y demás categorías. Revisión de documentos y preparación para entrevista consular.', icon:'🇺🇸', badge:'Más solicitado', bg:'linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d)' },
+  { id:2, name:'Visa Canadá', desc:'Visas de turismo, trabajo y estudio para Canadá. Optimizamos tu perfil para maximizar las posibilidades de aprobación.', icon:'🇨🇦', badge:'Alta demanda', bg:'linear-gradient(135deg,#c0392b,#8b0000)' },
+  { id:3, name:'Visa Europa (Schengen)', desc:'Accede a 27 países europeos con una sola visa. Tramitamos ante los consulados de España, Alemania, Francia, Italia y más.', icon:'🇪🇺', badge:'Popular', bg:'linear-gradient(135deg,#003399,#FFCC00)' },
+  { id:4, name:'Visa México', desc:'Trámite de visa para México. Asesoría completa para turismo, negocios y tránsito. Revisión de documentos y seguimiento del proceso.', icon:'🌮', badge:null, bg:'linear-gradient(135deg,#006847,#CE1126)' },
+  { id:5, name:'Otras Visas', desc:'Australia, Reino Unido, Nueva Zelanda, Brasil, Japón y más destinos. Consulta disponibilidad para tu país de destino.', icon:'🌍', badge:'Más destinos', bg:'linear-gradient(135deg,#134e5e,#71b280)' },
+  { id:6, name:'Pasaporte', desc:'Gestión de citas y asesoría para obtener o renovar tu pasaporte ecuatoriano de forma rápida y sin complicaciones.', icon:'📘', badge:null, bg:'linear-gradient(135deg,#1a472a,#2d6a4f)' },
+  { id:7, name:'Vuelos Nacionales', desc:'Búsqueda y reserva de los mejores vuelos dentro de Ecuador. Cotizamos todas las aerolíneas disponibles para encontrar la mejor tarifa.', icon:'🛫', badge:null, bg:'linear-gradient(135deg,#0f2027,#2c5364)' },
+  { id:8, name:'Vuelos Internacionales', desc:'Reservas de vuelos internacionales a cualquier destino del mundo. Incluye reservas demostrativas para trámites de visa.', icon:'✈️', badge:null, bg:'linear-gradient(135deg,#0f0c29,#302b63,#24243e)' },
+  { id:9, name:'Hospedaje Nacional', desc:'Reservas de hoteles, hostales y alojamientos en las principales ciudades del Ecuador. Las mejores opciones para cada presupuesto.', icon:'🏠', badge:null, bg:'linear-gradient(135deg,#b8860b,#8b6914)' },
+  { id:10, name:'Hospedaje Internacional', desc:'Reservas de hoteles en todo el mundo. Demostrativas para visa o reales para tu viaje. Confirmación inmediata por correo.', icon:'🏨', badge:null, bg:'linear-gradient(135deg,#4a0072,#7b2d8b)' },
+  { id:11, name:'Seguro de Viaje', desc:'Cobertura médica internacional obligatoria para Schengen y recomendada para todos los destinos. Emisión inmediata.', icon:'🛡️', badge:null, bg:'linear-gradient(135deg,#1f4037,#99f2c8)' }
+];
+
+var TESTIMONIALS = [
+  { name:'María Elena López', dest:'🇺🇸 Visa Estados Unidos — Aprobada', stars:'★★★★★', text:'"Gracias a ELHYTRAVEL obtuve mi visa americana sin complicaciones. Me guiaron paso a paso y me prepararon perfectamente para la entrevista. ¡100% recomendados!"', icon:'👩', tag:'Visa aprobada ✓' },
+  { name:'Carlos Andrés Sánchez', dest:'🇨🇦 Visa Canadá — Aprobada', stars:'★★★★★', text:'"Tenía miedo de que me rechazaran. Con ELHYTRAVEL todo fue diferente. Analizaron mi caso, fortalecieron mi expediente y ¡aprobaron mi visa!"', icon:'👨', tag:'Segundo intento ✓' },
+  { name:'Andrea Paola Rodríguez', dest:'🇪🇺 Visa Schengen — Aprobada', stars:'★★★★★', text:'"Fui a 5 países europeos gracias a la visa Schengen que tramité con ellos. El proceso fue rápido, claro y sin sorpresas."', icon:'👩', tag:'Europa conquistada ✓' },
+  { name:'Roberto José Mendoza', dest:'🇺🇸 Visa Estudiante F1 — Aprobada', stars:'★★★★★', text:'"Gracias a su asesoría voy a estudiar en Estados Unidos. Me ayudaron con todos los documentos y la preparación consular."', icon:'👨', tag:'Sueño cumplido ✓' },
+  { name:'Fernanda Isabel Vargas', dest:'🇨🇦 Visa Canadá — Aprobada', stars:'★★★★★', text:'"Excelente servicio. Me explicaron todo desde cero y mi visa llegó aprobada en tiempo récord. ¡Gracias equipo ELHYTRAVEL!"', icon:'👩', tag:'Proceso ágil ✓' },
+  { name:'Diego Sebastián Torres', dest:'🇪🇺 Visa España — Aprobada', stars:'★★★★★', text:'"La atención fue increíble. Me sentí acompañado en todo momento. Definitivamente los mejores de Ecuador en visas."', icon:'👨', tag:'Atención premium ✓' },
+  { name:'Valeria Cristina Mora', dest:'🇺🇸 Visa B2 — Aprobada', stars:'★★★★★', text:'"ELHYTRAVEL me orientó perfectamente, organizó mis documentos y ahora tengo mi visa de 10 años. ¡Estoy feliz!"', icon:'👩', tag:'Familia reunida ✓' }
+];
+
+// ============================================================
+// CARRITO
+// ============================================================
+var cart = [];
+
+function addToCart(id) {
+  id = Number(id);
+  var service = null;
+  for (var i = 0; i < SERVICES.length; i++) {
+    if (SERVICES[i].id === id) { service = SERVICES[i]; break; }
+  }
+  if (!service) return;
+
+  var exists = false;
+  for (var j = 0; j < cart.length; j++) {
+    if (cart[j].id === id) { exists = true; break; }
+  }
+  if (!exists) cart.push(service);
+
+  updateBtn(id, true);
+  updateCartBar();
+}
+
+function removeFromCart(id) {
+  id = Number(id);
+  var newCart = [];
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].id !== id) newCart.push(cart[i]);
+  }
+  cart = newCart;
+  updateBtn(id, false);
+  updateCartBar();
+}
+
+function updateBtn(id, inCart) {
+  var btn = document.getElementById('btn-' + id);
+  if (!btn) return;
+  if (inCart) {
+    btn.className = 'btn-add en-pedido';
+    btn.innerHTML = '✓ En pedido';
+  } else {
+    btn.className = 'btn-add';
+    btn.innerHTML = '+ Agregar';
+  }
+}
+
+function updateCartBar() {
+  var bar = document.getElementById('cart-bar');
+  var label = document.getElementById('cart-label');
+  var tags = document.getElementById('cart-tags');
+  var waBtn = document.getElementById('btn-wa-cart');
+  var waFloat = document.getElementById('wa-float');
+
+  if (cart.length === 0) {
+    bar.style.display = 'none';
+    if (waFloat) waFloat.style.bottom = '30px';
+    return;
+  }
+
+  bar.style.display = 'flex';
+  if (waFloat) waFloat.style.bottom = '100px';
+
+  label.textContent = cart.length + (cart.length === 1 ? ' SERVICIO SELECCIONADO' : ' SERVICIOS SELECCIONADOS');
+
+  var html = '';
+  for (var i = 0; i < cart.length; i++) {
+    html += '<span class="cart-tag">' + cart[i].name +
+      ' <button onclick="removeFromCart(' + cart[i].id + ')">✕</button></span>';
+  }
+  tags.innerHTML = html;
+
+  // Actualizar enlace del botón
+  var lista = '';
+  for (var k = 0; k < cart.length; k++) {
+    lista += '• ' + cart[k].icon + ' ' + cart[k].name + '\n';
+  }
+  var msg = 'Hola ELHYTRAVEL 👋\n\nEstoy interesado/a en los siguientes servicios:\n\n' + lista + '\n¡Contáctenme para cotizar y comenzar mi trámite!\n\n📌 travel.elhyai.com';
+  waBtn.onclick = function() {
+    window.location.href = 'https://wa.me/593989938910?text=' + encodeURIComponent(msg);
+  };
+}
+
+// ============================================================
+// RENDER SERVICIOS
+// ============================================================
+function renderServices() {
+  var grid = document.getElementById('services-grid');
+  var html = '';
+  for (var i = 0; i < SERVICES.length; i++) {
+    var s = SERVICES[i];
+    html += '<div class="service-card">' +
+      '<div class="card-image">' +
+        '<div class="card-image-bg" style="background:' + s.bg + '"></div>' +
+        '<div class="card-icon">' + s.icon + '</div>' +
+        (s.badge ? '<span class="card-badge">' + s.badge + '</span>' : '') +
+      '</div>' +
+      '<div class="card-body">' +
+        '<h3 class="card-name">' + s.name + '</h3>' +
+        '<p class="card-desc">' + s.desc + '</p>' +
+        '<div class="card-footer">' +
+          '<button class="btn-add" id="btn-' + s.id + '" onclick="addToCart(' + s.id + ')">+ Agregar</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+// ============================================================
+// RENDER TESTIMONIOS
+// ============================================================
+function renderTestimonials() {
+  var track = document.getElementById('t-track');
+  var all = TESTIMONIALS.concat(TESTIMONIALS);
+  var html = '';
+  for (var i = 0; i < all.length; i++) {
+    var t = all[i];
+    html += '<div class="t-card">' +
+      '<div class="t-header">' +
+        '<div class="t-avatar">' + t.icon + '</div>' +
+        '<div><div class="t-name">' + t.name + '</div><div class="t-dest">' + t.dest + '</div></div>' +
+      '</div>' +
+      '<div class="t-stars">' + t.stars + '</div>' +
+      '<p class="t-text">' + t.text + '</p>' +
+      '<span class="t-tag">' + t.tag + '</span>' +
+    '</div>';
+  }
+  track.innerHTML = html;
+}
+
+// ============================================================
+// NAVBAR SCROLL
+// ============================================================
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('navbar');
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ============================================================
+// INTERSECTION OBSERVER
+// ============================================================
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  renderServices();
+  renderTestimonials();
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+});
+</script>
+</body>
+</html>
