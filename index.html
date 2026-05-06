@@ -671,9 +671,14 @@ document.addEventListener('DOMContentLoaded', function() {
      ============================================================ -->
 
 <!-- Botón abrir chatbot -->
-<div id="chat-btn" onclick="toggleChat()">
-  <span id="chat-icon">💬</span>
-  <span class="chat-pulse"></span>
+<div id="chat-btn-wrapper" style="position:fixed;bottom:30px;left:20px;z-index:9500;display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="toggleChat()">
+  <div id="chat-btn" style="position:relative;flex-shrink:0">
+    <span id="chat-icon">💬</span>
+    <span class="chat-pulse"></span>
+  </div>
+  <div id="chat-label" style="background:#1E1245;color:#fff;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600;font-family:var(--font-b);white-space:nowrap;box-shadow:0 4px 16px rgba(30,18,69,.4);border:1px solid #7C3AED;line-height:1.4;max-width:180px;">
+    👋 ¡Hola! Soy tu<br>asistente virtual
+  </div>
 </div>
 
 <!-- Ventana chat -->
@@ -707,14 +712,17 @@ document.addEventListener('DOMContentLoaded', function() {
 @keyframes dotB{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
 
 #chat-btn{
-  position:fixed;bottom:100px;left:28px;z-index:9500;
+  position:relative;
   width:56px;height:56px;background:#1E1245;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;font-size:24px;
   box-shadow:0 6px 24px rgba(30,18,69,.5);
   border:2px solid #7C3AED;transition:all .3s;
+  flex-shrink:0;
 }
 #chat-btn:hover{transform:scale(1.1);background:#7C3AED}
+#chat-btn-wrapper:hover #chat-btn{background:#7C3AED;transform:scale(1.05)}
+#chat-btn-wrapper:hover #chat-label{background:#7C3AED;border-color:#9333EA}
 .chat-pulse{
   position:absolute;top:-3px;right:-3px;width:13px;height:13px;
   background:#4ade80;border-radius:50%;border:2px solid #fff;
@@ -722,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 #chat-win{
-  position:fixed;bottom:170px;left:28px;z-index:9501;
+  position:fixed;bottom:100px;left:28px;z-index:9501;
   width:330px;max-width:calc(100vw - 36px);
   background:#fff;border-radius:20px;
   box-shadow:0 20px 60px rgba(30,18,69,.25);
@@ -795,8 +803,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 #chat-enviar:hover{background:#4C1D95;transform:scale(1.05)}
 @media(max-width:480px){
-  #chat-win{left:10px;width:calc(100vw-20px);bottom:155px}
-  #chat-btn{left:18px;bottom:95px}
+  #chat-win{left:10px;width:calc(100vw-20px);bottom:95px}
+  #chat-btn-wrapper{left:10px;bottom:20px}
+  #chat-label{font-size:11px;padding:6px 10px}
 }
 </style>
 
@@ -821,9 +830,17 @@ var KB = [
   { k:['visa mexico','visa méxico','mexico','méxico'],
     r:'🌮 <b>Visa México</b><br>Asesoría para visa de turismo, negocios y tránsito a México.<br><br>📋 <b>Requisitos:</b><br>• Pasaporte vigente<br>• Formulario de solicitud<br>• Fotografía reciente<br>• Comprobante económico<br><br>Contáctanos para revisar tu caso específico. ¿Tienes alguna duda?' },
 
-  // OTRAS VISAS
-  { k:['australia','reino unido','uk','nueva zelanda','brasil','japon','japón','otras visas','otros paises'],
-    r:'🌍 <b>Otras Visas</b><br>También tramitamos visas para:<br>• 🇦🇺 Australia<br>• 🇬🇧 Reino Unido<br>• 🇳🇿 Nueva Zelanda<br>• 🇧🇷 Brasil<br>• 🇯🇵 Japón<br><br>Cada visa tiene requisitos específicos. ¿A qué país te gustaría viajar?' },
+  // COSTA RICA Y CENTROAMERICA (no requieren visa para ecuatorianos)
+  { k:['costa rica','panama','panamá','guatemala','honduras','el salvador','nicaragua','belize','belice','centroamerica','centroamérica'],
+    r:'🌴 <b>¡Buenas noticias!</b><br>Los ecuatorianos <b>NO necesitan visa</b> para viajar a Costa Rica, Panamá y la mayoría de países de Centroamérica.<br><br>✅ Solo necesitas:<br>• Pasaporte vigente<br>• Tiquete de regreso<br>• Solvencia económica<br>• Reserva de hospedaje<br><br>✈️ Podemos ayudarte con:<br>• Reserva de vuelos<br>• Hospedaje<br>• Seguro de viaje<br><br>¿Te ayudamos a organizar tu viaje a Costa Rica?' },
+
+  // COLOMBIA Y SUDAMERICA (no requieren visa)
+  { k:['colombia','peru','perú','chile','argentina','bolivia','paraguay','uruguay','venezuela','sudamerica','sudamérica','america del sur'],
+    r:'🌎 <b>¡Sin visa requerida!</b><br>Los ecuatorianos <b>NO necesitan visa</b> para viajar a Colombia, Perú, Chile, Argentina y la mayoría de países sudamericanos.<br><br>✅ Solo necesitas:<br>• Cédula o pasaporte vigente<br>• Tiquete de regreso<br>• Solvencia económica<br><br>✈️ Podemos ayudarte con:<br>• Reserva de vuelos<br>• Hospedaje<br>• Seguro de viaje<br><br>¿Quieres que te cotizemos vuelos o hotel?' },
+
+  // OTRAS VISAS (países que sí requieren)
+  { k:['australia','reino unido','uk','nueva zelanda','brasil','japon','japón','otras visas','otros paises','china','rusia','india','turquia','turquía','corea','dubai','emiratos'],
+    r:'🌍 <b>Otras Visas</b><br>También tramitamos visas para:<br>• 🇦🇺 Australia<br>• 🇬🇧 Reino Unido<br>• 🇳🇿 Nueva Zelanda<br>• 🇧🇷 Brasil<br>• 🇯🇵 Japón<br>• 🇨🇳 China<br>• 🇦🇪 Emiratos Árabes<br><br>Cada visa tiene requisitos específicos. ¿A qué país te gustaría viajar?' },
 
   // PASAPORTE
   { k:['pasaporte','renovar pasaporte','sacar pasaporte','pasaporte ecuatoriano'],
@@ -899,17 +916,25 @@ function toggleChat() {
   chatAbierto = !chatAbierto;
   var win = document.getElementById('chat-win');
   var icon = document.getElementById('chat-icon');
+  var label = document.getElementById('chat-label');
   if (chatAbierto) {
     win.classList.add('abierto');
     icon.textContent = '✕';
+    if (label) label.style.display = 'none';
     if (!win.dataset.iniciado) {
       win.dataset.iniciado = '1';
       mostrarBienvenida();
+    } else {
+      // Siempre mostrar sugerencias al reabrir si no hay sugg-box
+      if (!document.getElementById('sugg-box')) {
+        addSugerencias();
+      }
     }
     scrollAbajo();
   } else {
     win.classList.remove('abierto');
     icon.textContent = '💬';
+    if (label) label.style.display = 'block';
   }
 }
 
@@ -934,7 +959,34 @@ function clickSugg(btn) {
   var box = document.getElementById('sugg-box');
   if (box) box.remove();
   addMsgUser(texto);
-  setTimeout(function() { responder(texto); }, 600);
+  mostrarTyping();
+  setTimeout(function() {
+    quitarTyping();
+    responder(texto);
+    // Mostrar mini sugerencias de seguimiento
+    setTimeout(addMiniSugg, 300);
+    document.getElementById('chat-in').focus();
+  }, 800);
+}
+
+function addMiniSugg() {
+  var msgs = document.getElementById('chat-msgs');
+  // No añadir si ya hay sugerencias
+  if (document.getElementById('mini-sugg')) return;
+  var opciones = [
+    'Ver otros servicios',
+    'Hablar con un asesor',
+    '¿Cuánto cuesta?',
+    'Hacer otra consulta'
+  ];
+  var div = document.createElement('div');
+  div.className = 'sugerencias'; div.id = 'mini-sugg';
+  div.innerHTML = '<div style="font-size:11px;color:#9CA3AF;margin-bottom:4px;padding-left:2px">También puedes preguntar:</div>' +
+    opciones.map(function(s) {
+      return '<button class="sug-btn" onclick="clickSugg(this)">' + s + '</button>';
+    }).join('');
+  msgs.appendChild(div);
+  scrollAbajo();
 }
 
 function enviar() {
@@ -949,6 +1001,7 @@ function enviar() {
   setTimeout(function() {
     quitarTyping();
     responder(texto);
+    inp.focus();
   }, 800);
 }
 
@@ -965,7 +1018,18 @@ function responder(texto) {
     }
     if (resp !== DEFAULT) break;
   }
+  // Si no encontró respuesta, revisar si es un país o destino genérico
+  if (resp === DEFAULT) {
+    var paisPatrones = ['viajar a','viaje a','visa para','quiero ir a','como llego a','ir a','destino'];
+    for (var p = 0; p < paisPatrones.length; p++) {
+      if (lower.indexOf(paisPatrones[p]) !== -1) {
+        resp = '✈️ Para ese destino necesito consultarlo con nuestros asesores ya que los requisitos pueden variar.<br><br>📱 <b>Escríbenos al WhatsApp:<br>0989 938 910</b><br><br>Te respondemos con info exacta en menos de 2 horas. ¡Sin costo!<br><br><a href="https://wa.me/593989938910?text=Hola%2C%20necesito%20info%20sobre%20viaje%20a%20' + encodeURIComponent(texto) + '" target="_blank" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#25D366;color:#000;border-radius:20px;font-weight:700;text-decoration:none;font-size:12px">📲 Consultar por WhatsApp</a>';
+        break;
+      }
+    }
+  }
   addMsgBot(resp);
+  setTimeout(addMiniSugg, 400);
 }
 
 function addMsgBot(html) {
